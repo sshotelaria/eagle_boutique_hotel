@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Serviços - Eagle Boutique Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+        @media print {
+            body {
+                width: 1280px;
+                height: 720px;
+            }
+            .slide {
+                page-break-after: always;
+                width: 1280px;
+                height: 720px;
+            }
+            .modal {
+                display: none !important;
+            }
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #1A365D;
+            color: #E2E8F0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .slide {
+            max-width: 1280px;
+            min-height: 720px;
+            background: #1A365D;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            width: 100%;
+        }
+        
+        .content-container {
+            display: flex;
+            min-height: 720px;
+            padding: 40px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .left-column, .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            min-width: 300px;
+        }
+        
+        .full-width {
+            width: 100%;
+        }
+        
+        .section {
+            background: rgba(26, 54, 93, 0.8);
+            border: 1px solid #2D3748;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #FFFFFF;
+            text-align: center;
+            border-bottom: 2px solid #4299E1;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4299E1;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            color: #4299E1;
+            font-weight: 600;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 54, 93, 0.7);
+            z-index: 1;
+        }
+        
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 720px;
+            padding: 60px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .cover-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+        
+        .cover-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #4299E1;
+        }
+        
+        .kpi-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .kpi-item, .service-item, .feature-item, .benefit-item, .strategy-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #4299E1;
+        }
+        
+        .service-icon, .feature-icon, .kpi-icon, .benefit-icon, .strategy-icon {
+            color: #4299E1;
+            font-size: 24px;
+            margin-right: 15px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .service-text, .feature-text, .kpi-text, .benefit-text, .strategy-text {
+            font-size: 18px;
+        }
+        
+        .kpi-title, .strategy-title {
+            font-weight: 600;
+            color: #FFFFFF;
+            display: block;
+        }
+        
+        .kpi-desc {
+            font-size: 16px;
+            color: #CBD5E0;
+        }
+        
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .strategy-item-clickable {
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #2D3748;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .strategy-item-clickable:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.2);
+            background: rgba(66, 153, 225, 0.2);
+        }
+        
+        .strategy-number {
+            background: #4299E1;
+            color: #FFFFFF;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            margin: 0 auto 10px;
+        }
+        
+        .strategy-text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .chart-container {
+            background: rgba(26, 54, 93, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            height: 300px;
+            margin-top: 20px;
+        }
+        
+        .terms-container {
+            margin-top: 20px;
+        }
+        
+        .term-item {
+            background: rgba(66, 153, 225, 0.1);
+            border-left: 4px solid #4299E1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .term-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+        
+        .term-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4299E1;
+            margin-top: 5px;
+        }
+        
+        .term-description {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        
+        .experience-highlight {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(66, 153, 225, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .experience-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4299E1;
+            margin: 10px 0;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #1A365D;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 80%;
+            border: 2px solid #4299E1;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: #4299E1;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #4299E1;
+            padding-bottom: 10px;
+        }
+        
+        .modal-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .modal-close {
+            background: #4299E1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .placeholder-image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #CBD5E0;
+            text-align: center;
+            padding: 20px;
+            background: #2D3748;
+        }
+        
+        .placeholder-image i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #4299E1;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 1400px) {
+            .slide {
+                min-height: auto;
+            }
+            
+            .content-container {
+                min-height: auto;
+                padding: 30px;
+            }
+            
+            .cover-content {
+                min-height: 600px;
+                padding: 40px;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .cover-title {
+                font-size: 60px;
+            }
+            
+            .cover-subtitle {
+                font-size: 30px;
+            }
+            
+            .content-container {
+                gap: 30px;
+            }
+            
+            .left-column, .right-column {
+                flex: 100%;
+            }
+        }
+        
+        @media screen and (max-width: 992px) {
+            body {
+                padding: 15px;
+            }
+            
+            .cover-title {
+                font-size: 48px;
+            }
+            
+            .cover-subtitle {
+                font-size: 28px;
+            }
+            
+            .content-container {
+                padding: 20px;
+                gap: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
+            
+            p, .service-text, .feature-text, .kpi-text, .benefit-text, .strategy-text, .term-description {
+                font-size: 16px;
+            }
+            
+            .strategies-grid, .service-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cover-content {
+                min-height: 500px;
+                padding: 30px 20px;
+            }
+            
+            .kpi-item, .service-item, .feature-item, .benefit-item, .strategy-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 12px;
+            }
+            
+            .service-icon, .feature-icon, .kpi-icon, .benefit-icon, .strategy-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .cover-title {
+                font-size: 36px;
+            }
+            
+            .cover-subtitle {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .content-container {
+                padding: 15px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .cover-content {
+                min-height: 400px;
+            }
+            
+            .term-title {
+                font-size: 18px;
+            }
+            
+            .term-value {
+                font-size: 20px;
+            }
+            
+            .experience-value {
+                font-size: 24px;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .cover-title {
+                font-size: 32px;
+            }
+            
+            .cover-subtitle {
+                font-size: 20px;
+            }
+            
+            .content-container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            p, .service-text, .feature-text, .kpi-text, .benefit-text, .strategy-text, .term-description {
+                font-size: 14px;
+            }
+            
+            .cover-content {
+                min-height: 350px;
+                padding: 20px 15px;
+            }
+            
+            .kpi-desc {
+                font-size: 14px;
+            }
+            
+            .service-icon, .feature-icon, .kpi-icon, .benefit-icon, .strategy-icon {
+                font-size: 20px;
+            }
+            
+            .term-item {
+                padding: 15px;
+            }
+            
+            .chart-container {
+                height: 200px;
+                padding: 15px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal para explicações -->
+    <div class="modal" id="explanationModal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Título</h3>
+            <p class="modal-text" id="modalText">Texto de explicação...</p>
+            <button class="modal-close" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Slide 1: Capa -->
+    <section class="slide">
+        <div class="background-image" style="background: linear-gradient(135deg, #1A365D 0%, #2D3748 100%);"></div>
+        <div class="overlay"></div>
+        <div class="cover-content">
+            <h1 class="cover-title">Proposta de Serviços</h1>
+            <h2 class="cover-subtitle">Eagle Boutique Hotel</h2>
+            <p class="text-xl mt-10 text-center text-gray-200">Gestão Especializada em Hotelaria</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: Introdução -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Introdução</h1>
+                    <p>O mercado hoteleiro atual exige uma <span class="highlight">gestão dinâmica e estratégica</span> para garantir a competitividade e a rentabilidade.</p>
+                    <p>O <span class="highlight">Eagle Boutique Hotel</span>, com seu posicionamento único, pode se beneficiar significativamente de uma abordagem especializada que integre:</p>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Tecnologia avançada</span>
+                                <span class="kpi-desc">Para gestão hoteleira completa e integrada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Revenue Management</span>
+                                <span class="kpi-desc">Gestão de receita especializada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Atendimento humanizado</span>
+                                <span class="kpi-desc">Personalizado e de alta qualidade</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Otimização de processos</span>
+                                <span class="kpi-desc">Eficiência operacional e redução de custos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6">Nossa proposta visa oferecer soluções completas que garantam um <span class="highlight">crescimento sustentável</span> e a <span class="highlight">excelência no serviço</span>.</p>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2>Vantagens da Parceria</h2>
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Aumento da receita através de estratégias comprovadas
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Otimização de processos operacionais
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Diferenciação competitiva no mercado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Serviços Oferecidos -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Serviços Oferecidos</h1>
+                    <p class="text-xl mb-6">Soluções completas para otimizar as operações e maximizar a receita do Eagle Boutique Hotel:</p>
+                    
+                    <div class="service-grid">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="service-text">
+                                Central de Reservas com Atendimento Humanizado
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-text">
+                                Gestão de Vendas Diretas e por Canais Online
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="service-text">
+                                Estratégia Tarifária e Pacotes Promocionais
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="service-text">
+                                Aplicação de Revenue Management
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="service-text">
+                                Gestão de OTAs and Channel Manager
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="service-text">
+                                Configuração de Channel Managers e Booking Engines
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="service-text">
+                                Integração com OTAs e Canais de Distribuição
+                            </div>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="service-text">
+                                Análise de Indicadores e Monitoramento de KPIs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2>Benefícios dos Serviços</h2>
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Maximização da receita através de estratégias comprovadas
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            
+                            <div class="kpi-text">
+                                Redução de tempo em gestão operacional
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Melhoria contínua baseada em dados e métricas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Revenue Management e Estratégia Tarifária -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Revenue Management e Estratégia Tarifária</h1>
+                    <p>Aplicamos técnicas avançadas de <span class="highlight">Revenue Management</span> para maximizar a receita do Eagle Boutique Hotel através de estratégias de precificação dinâmica baseadas em dados.</p>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Precificação Dinâmica</span>
+                                <span class="kpi-desc">Ajuste de tarifas baseado em demanda, sazonalidade, eventos locais e comportamento da concorrência.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Segmentação de Mercado</span>
+                                <span class="kpi-desc">Identificação de diferentes perfis de clientes e criação de offes personalizadas para cada segmento.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Gestão de Disponibilidade</span>
+                                <span class="kpi-desc">Controle estratégico de inventário para maximizar a ocupação e o valor médio da diária.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Análise de Indicadores</span>
+                                <span class="kpi-desc">Monitoramento constante de KPIs como RevPAR, ADR, taxa de ocupação e GOPPAR para ajustes estratégicos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2>Estratégias de Revenue Management</h2>
+                    <div class="strategies-grid">
+                        <div class="strategy-item-clickable" onclick="showExplanation('Segmentação de Mercado', 'Divisão do mercado em grupos distintos com necessidades, características ou comportamentos diferentes que podem requerer produtos ou mixes de marketing específicos.')">
+                            <div class="strategy-number">1</div>
+                            <div class="strategy-text">Segmentação de Mercado</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Estratégia de Precificação', 'Definição de preços baseada em demanda, concorrência, custos e valor percebido, utilizando técnicas de precificação dinâmica.')">
+                            <div class="strategy-number">2</div>
+                            <div class="strategy-text">Estratégia de Precificação</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Previsão e Orçamentação', 'Análise de dados históricos e tendências para prever demanda e definir orçamentos realistas para o negócio.')">
+                            <div class="strategy-number">3</div>
+                            <div class="strategy-text">Previsão e Orçamentação</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Distribuição', 'Gestão estratégica dos canais de distribuição para maximizar alcance e conversões, mantendo a paridade tarifária.')">
+                            <div class="strategy-number">4</div>
+                            <div class="strategy-text">Distribuição</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Medição de KPIs', 'Monitoramento constante de indicadores-chave de performance para avaliar resultados e orientar decisões.')">
+                            <div class="strategy-number">5</div>
+                            <div class="strategy-text">Medição de KPIs</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Gestão de Inventário', 'Controle estratégico da disponibilidade para maximizar receita através de técnicas de abrir/fechar tarifas.')">
+                            <div class="strategy-number">6</div>
+                            <div class="strategy-text">Gestão de Inventário</div>
+                        </div>
+                        
+                        <div class="strategy-item-clickable" onclick="showExplanation('Relatórios e Análises', 'Geração de relatórios detalhados e análises estratégicas para suportar a tomada de decisão.')">
+                            <div class="strategy-number">7</div>
+                            <div class="strategy-text">Relatórios e Análises</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Monitoramento de KPIs -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Monitoramento de KPIs</h1>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">RevPAR</span>
+                                <span class="kpi-desc">Receita por Quarto Disponível, medindo a eficiência da gestão de receita</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">ADR</span>
+                                <span class="kpi-desc">Diária Média, indicando o valor médio das reservas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Taxa de Ocupação</span>
+                                <span class="kpi-desc">Percentual de quartos ocupados em relação ao total disponível</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">GOPPAR</span>
+                                <span class="kpi-desc">Lucro Operacional Bruto por Quarto Disponível</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6">Fornecemos insights estratégicos e propomos ajustes contínuos para otimizar the performance do hotel e alcançar os objetivos financeiros estabelecidos.</p>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h1>Potencial de Melhoria com Gestão Especializada</h1>
+                    <div class="chart-container">
+                        <canvas id="improvementChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Análise e Insights</h2>
+                    <p>Com base em dados históricos e tendências de mercado, identificamos oportunidades significativas de melhoria em todos os indicadores-chave de performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Termos Comerciais -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Termos Comerciais</h1>
+                    <p class="text-xl">Investimento para otimização contínua das operações e resultados do Eagle Boutique Hotel:</p>
+                    
+                    <div class="terms-container">
+                        <div class="term-item">
+                            <div class="term-title">
+                                <i class="fas fa-money-bill-wave mr-2"></i> Custo Mensal de Gestão
+                            </div>
+                            <div class="term-value">R$ 2.500,00</div>
+                            <div class="term-description">Valor fixo mensal para a gestão completa da hospedagem, abrangendo todos os serviços listados.</div>
+                        </div>
+                        
+                        <div class="term-item">
+                            <div class="term-title">
+                                <i class="fas fa-percentage mr-2"></i> Comissão sobre Vendas Diretas
+                            </div>
+                            <div class="term-value">7,5%</div>
+                            <div class="term-description">Comissão aplicada sobre o valor total das vendas diretas geradas e confirmadas através das estratégias implementadas.</div>
+                        </div>
+                        
+                        <div class="term-item">
+                            <div class="term-title">
+                                <i class="fas fa-calendar-alt mr-2"></i> Carência para Término do Serviço
+                            </div>
+                            <div class="term-value">30 dias</div>
+                            <div class="term-description">Período mínimo de aviso prévio para o término da prestação de serviço, aplicável a ambas as parties.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2>Vantagens do Modelo</h2>
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Custo-Benefício</span>
+                                <span class="kpi-desc">Investimento alinhado com resultados mensuráveis</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Performance</span>
+                                <span class="kpi-desc">Remuneração atrelada ao sucesso das estratégias</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Flexibilidade</span>
+                                <span class="kpi-desc">Contrato com condições justas para ambas as partes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Próximos Passos</h2>
+                    <p>Para iniciarmos nossa parceria, seguiremos os seguintes passos:</p>
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Assinatura do contrato de prestação de serviços
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Análise detalhada dos dados históricos do hotel
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="kpi-text">
+                                Implementação das estratégias definidas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Conclusão -->
+    <section class="slide">
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section">
+                    <h1>Conclusão</h1>
+                    <p>Nossa proposta oferece uma <span class="highlight">solução completa e especializada</span> para o Eagle Boutique Hotel, com foco em maximizar a receita, otimizar processos e elevar a experiência do cliente.</p>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Diferenciação Competitiva</span>
+                                <span class="kpi-desc">Posicionamento único no mercado através de estratégias personalizadas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Aumento de Receita</span>
+                                <span class="kpi-desc">Resultados mensuráveis através de técnicas comprovadas de Revenue Management</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Otimização Operacional</span>
+                                <span class="kpi-desc">Processos mais eficientes com redução de custos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6">Estamos confiantes de que nossa parceria trará resultados significativos e duradouros para o Eagle Boutique Hotel.</p>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2>Contato</h2>
+                    <p>Para mais informações ou para agendar uma reunião de apresentação:</p>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Paulo Ricardo Miguez de Oliveira</span>
+                                <span class="kpi-desc">Especialista em Gestão Hoteleira</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">Telefone</span>
+                                <span class="kpi-desc">(24) 99858-8031</span>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-item">
+                            <div class="kpi-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="kpi-text">
+                                <span class="kpi-title">E-mail</span>
+                                <span class="kpi-desc">sshotelaria@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-highlight">
+                    <h3>Nossa Experiência</h3>
+                    <div class="experience-value">+13 anos</div>
+                    <p>no mercado de gestão hoteleira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Funções para o modal de explicações
+        function showExplanation(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('explanationModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('explanationModal').style.display = 'none';
+        }
+        
+        // Fechar modal ao clicar fora do conteúdo
+        window.onclick = function(event) {
+            const modal = document.getElementById('explanationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Gráfico de Melhoria
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('improvementChart').getContext('2d');
+            const improvementChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['RevPAR', 'ADR', 'Ocupação', 'GOPPAR'],
+                    datasets: [
+                        {
+                            label: 'Situação Atual',
+                            data: [65, 85, 70, 60],
+                            backgroundColor: 'rgba(66, 153, 225, 0.7)',
+                            borderColor: 'rgba(66, 153, 225, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Com Gestão Especializada',
+                            data: [85, 110, 85, 80],
+                            backgroundColor: 'rgba(72, 187, 120, 0.7)',
+                            borderColor: 'rgba(72, 187, 120, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Valor (Indexado)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#E2E8F0'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
